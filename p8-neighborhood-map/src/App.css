@@ -16,6 +16,14 @@ body {
   align-items: center;
 }
 
+.header-footer, .nav-menu {
+  position: absolute;
+  font-family: 'Questrial', sans-serif;
+  margin: 0px;
+  bottom: 0;
+  color: #ffc107;
+}
+
 .nav-menu {
   font-size: 22px;
   left: 0;
@@ -36,10 +44,3 @@ body {
   padding: 0px 10px 5px 0px;
 }
 
-.header-footer, .nav-menu {
-  position: absolute;
-  font-family: 'Questrial', sans-serif;
-  margin: 0px;
-  bottom: 0;
-  color: #ffc107;
-}

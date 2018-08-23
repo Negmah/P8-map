@@ -8,7 +8,7 @@ const Header = (props) => {
         <div className='header-wrapper' title='Pena Palace at night'>
             <div className='nav-menu'>
                 {/* Code partially taken from W3Schools */}
-                <div className='openbtn' onClick={props.navBar}>&#9776;</div>
+                <div className='open-button' onClick={props.navBar}>&#9776;</div>
             </div>
             <div className='header-text'>
                 <h1 className='header-title'>Mystical Sintra</h1>
