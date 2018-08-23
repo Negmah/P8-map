@@ -1,18 +1,45 @@
-.App {
+body {
   text-align: center;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+.header-wrapper {
+  position: relative;
+  background-image: url(https://res.cloudinary.com/negmah/image/upload/v1534020472/sintra_palacio_da_pena_da_cruz_alta_450px.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: black;
   color: white;
+  height: calc(100vh / 6);
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.App-title {
-  font-size: 1.5em;
+.nav-menu {
+  font-size: 22px;
+  left: 0;
+  padding: 0px 0px 5px 15px;
 }
 
-.App-intro {
-  font-size: large;
+.header-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 52px;
+  margin: 0px;
+  opacity: 0.7;
+  text-shadow: -4px 5px 3px #f44336;
+}
+
+.header-footer {
+  font-size: 14px;
+  right: 0;
+  padding: 0px 1px 5px 0px;
+}
+
+.header-footer, .nav-menu {
+  position: absolute;
+  font-family: 'Questrial', sans-serif;
+  margin: 0px;
+  bottom: 0;
+  color: #ffc107;
 }
