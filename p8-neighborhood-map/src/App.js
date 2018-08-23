@@ -15,12 +15,20 @@ import Sidebar from './Sidebar'
 
 class App extends Component {
 
+
+  openNav()  {
+    document.getElementById("navbar").style.width = "250px";
+  }
+
+  closeNav() {
+      document.getElementById("navbar").style.width = "0";
+  }
   
   render() {
     return (
       <div className="App">
         <Header />
-        <Sidebar />
+        <Sidebar openNavbar={this.openNav} closeNavbar={this.closeNav} />
       </div>
     );
   }

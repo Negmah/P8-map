@@ -7,7 +7,7 @@ const Sidebar = (props) => {
 
   return (
     //Code partially taken from W3Schools
-    <nav id="mySidenav" className="sidenav">
+    <nav id="navbar" className="sidenav">
       <ul>
           <li><a href='javascript:void(0)' className='close-button' onClick='closeNav()'>&times;</a></li>
           <li><a href='#'>location 1</a></li>
