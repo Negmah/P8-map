@@ -2,6 +2,9 @@ body {
   text-align: center;
 }
 
+
+/* <<<<<<<<<<<<<< HEADER >>>>>>>>>>>>> */
+
 .header-wrapper {
   position: relative;
   background-image: url(https://res.cloudinary.com/negmah/image/upload/v1534020472/sintra_palacio_da_pena_da_cruz_alta_450px.jpg);
@@ -44,3 +47,51 @@ body {
   padding: 0px 10px 5px 0px;
 }
 
+/* <<<<<<<<<<<<<< SIDEBAR >>>>>>>>>>>>> */
+
+/* Side navigation menu */
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 30vw; /* 30% of the viewport width */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  padding-top: 15px;
+  text-align: center;
+}
+
+/* Nav menu links */
+.sidenav a {
+  padding: 8px 12px 12px 0px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #b1b1b1;
+  display: block;
+  transition: 0.3s;
+  font-family: 'Questrial', sans-serif;
+  text-align: right;
+}
+
+/* Change link color on mouse over */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Nav menu links wrapper */
+.sidenav > ul {
+  margin: 0; /*Force margin to 0*/
+  padding: 0; /*Force padding to 0*/
+}
+
+.sidenav > ul > li:first-of-type > a:first-of-type {
+  padding-top: 15vh; /* 15% of the viewport height */
+}
+
+.sidenav span > a:first-of-type {
+  font-size: 48px;
+}

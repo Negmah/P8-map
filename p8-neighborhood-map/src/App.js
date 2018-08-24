@@ -17,7 +17,7 @@ class App extends Component {
 
 
   openNav()  {
-    document.getElementById("navbar").style.width = "250px";
+    document.getElementById("navbar").style.width = "30vw";
   }
 
   closeNav() {
@@ -26,10 +26,12 @@ class App extends Component {
   
   render() {
     return (
-      <div className="App">
-        <Header />
-        <Sidebar openNavbar={this.openNav} closeNavbar={this.closeNav} />
-      </div>
+      <main>
+        <div className="App">
+          <Header openNavbar={this.openNav} />
+          <Sidebar closeNavbar={this.closeNav} />
+        </div>
+      </main>
     );
   }
 }
