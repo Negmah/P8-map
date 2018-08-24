@@ -24,8 +24,8 @@ class Map extends Component {
     getVenues = () => {
         const endPoint = 'https://api.foursquare.com/v2/venues/explore?'
         const parameters = {
-            client_id: 'LA40H1ZGUNO3SFXMLESDVMJ1C1KKM54T4H51YNRD3QC2CEAV',
-            client_secret: '4P1ETB0XWLO2TTH33KYGENTUS3RA4UCHIEP3DTAG21ODCGSL',
+            client_id: 'GY21CT1VXNSUBLIHUETJXMKOZSVQOEGL3X32O5AHAZGABGV1',
+            client_secret: 'LOTRCNP3MSSKHDCUCFKRNRHMFMATXUQ5BTZV2XA4TH4OKMDE',
             near: 'Sintra',
             radius: '10000',
             section: 'topPicks',
