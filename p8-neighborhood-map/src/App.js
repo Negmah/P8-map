@@ -11,7 +11,7 @@ import './App.css';
 import Header from './Header'
 import Sidebar from './Sidebar'
 import Map from './Map'
-
+import Footer from './Footer'
 
 
 
@@ -19,7 +19,7 @@ class App extends Component {
 
 
   openNav()  {
-    document.getElementById("navbar").style.width = "30vw";
+    document.getElementById("navbar").style.width = "50vw";
   }
 
   closeNav() {
@@ -33,6 +33,7 @@ class App extends Component {
           <Header openNavbar={this.openNav} />
           <Sidebar closeNavbar={this.closeNav} />
           <Map />
+          <Footer />
         </div>
       </main>
     );

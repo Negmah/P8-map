@@ -1,4 +1,6 @@
 body {
+  width: 100%;
+  height: 100%;
   text-align: center;
 }
 
@@ -17,7 +19,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 20px rgb(0, 0, 0) solid;
+  border-bottom: 19px rgb(0, 0, 0) solid;
 }
 
 .header-footer, .nav-menu {
@@ -51,26 +53,66 @@ body {
 /* <<<<<<<<<<<<<< SIDEBAR >>>>>>>>>>>>> */
 
 /* Side navigation menu */
-.sidenav {
+.sidebar {
   height: 100%; /* 100% Full-height */
-  width: 30vw; /* 30% of the viewport width */
   position: fixed; /* Stay in place */
   z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
   left: 0;
   background-color: #111; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-  padding-top: 15px;
-  text-align: center;
+}
+
+.sidebar-header {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+.sidebar-icon {
+  width: 100px;
+  height: auto;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 25px;
+}
+
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 5px;
+  margin-top: 10px;
+  background-color: #FFC107;
+  border: 2px solid #FFC107;
+  border-radius: 50px; 
+  font-size: 20px;
+  cursor: pointer;
+  color: white;
+}
+
+.sidebar-filter {
+  width: 150px;
+  height: 25px;
+  border: 3px solid #ffc107; /* set query's box border */
+  background-color: #111; /* set query's box background color */
+  font-family: 'Questrial', sans-serif; /* set query's box font tamily */
+  text-indent: 10px; /* indent default text in query box in 10px */
+}
+
+/* Nav menu links wrapper */
+#sidebar-list > ul {
+  margin: 0; /*Force margin to 0*/
+  padding: 0; /*Force padding to 0*/
+  margin-top: 15px; /* 15% of the viewport height */
 }
 
 /* Nav menu links */
-.sidenav a {
-  padding: 8px 12px 12px 0px;
+#sidebar-header a {
+  width: 10px;
+  margin: 0px;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 40px;
   color: #b1b1b1;
   display: block;
   transition: 0.3s;
@@ -79,22 +121,12 @@ body {
 }
 
 /* Change link color on mouse over */
-.sidenav a:hover {
+#sidebar-header a:hover {
   color: #f1f1f1;
 }
 
-/* Nav menu links wrapper */
-.sidenav > ul {
-  margin: 0; /*Force margin to 0*/
-  padding: 0; /*Force padding to 0*/
-}
-
-.sidenav > ul > li:first-of-type > a:first-of-type {
-  padding-top: 15vh; /* 15% of the viewport height */
-}
-
-.sidenav span > a:first-of-type {
-  font-size: 48px;
+#sidebar-list ul > li > a:first-of-type {
+  font-size: 18px;
 }
 
 
@@ -102,4 +134,13 @@ body {
 
 #map {
   width: 100%;
+}
+
+/* <<<<<<<<<<<<<< FOOTER >>>>>>>>>>>>> */
+
+#footer-wrapper {
+  width: 100vw;
+  height: 100px;
+  background-color: black;
+  bottom: 0;
 }
