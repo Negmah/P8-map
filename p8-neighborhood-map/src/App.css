@@ -17,6 +17,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-bottom: 20px rgb(0, 0, 0) solid;
 }
 
 .header-footer, .nav-menu {
@@ -94,4 +95,11 @@ body {
 
 .sidenav span > a:first-of-type {
   font-size: 48px;
+}
+
+
+/* <<<<<<<<<<<<<< MAP >>>>>>>>>>>>> */
+
+#map {
+  width: 100%;
 }

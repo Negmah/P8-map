@@ -10,6 +10,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './Header'
 import Sidebar from './Sidebar'
+import Map from './Map'
+
 
 
 
@@ -30,6 +32,7 @@ class App extends Component {
         <div className="App">
           <Header openNavbar={this.openNav} />
           <Sidebar closeNavbar={this.closeNav} />
+          <Map />
         </div>
       </main>
     );
