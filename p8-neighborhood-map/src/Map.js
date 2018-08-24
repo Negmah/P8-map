@@ -31,15 +31,17 @@ class Map extends Component {
             section: 'topPicks',
             v: '201802'
         }
-    }
 
-    axios.get(endPoint + new URLSearchParams(parameters))
+        axios.get(endPoint + new URLSearchParams(parameters))
         .then(response => {
             console.log(response)
         })
         .catch(error => {
             console.log('ERROR!! ' + error)
         })
+    }
+
+    
 
 
 
