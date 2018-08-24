@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import axios from 'axios'
 
 
 class Map extends Component {
@@ -20,8 +21,32 @@ class Map extends Component {
         );
     }
 
+    getVenues = () => {
+        const endPoint = 'https://api.foursquare.com/v2/venues/explore?'
+        const parameters = {
+            client_id: 'LA40H1ZGUNO3SFXMLESDVMJ1C1KKM54T4H51YNRD3QC2CEAV',
+            client_secret: '4P1ETB0XWLO2TTH33KYGENTUS3RA4UCHIEP3DTAG21ODCGSL',
+            near: 'Sintra',
+            radius: '10000',
+            section: 'topPicks',
+            v: '201802'
+        }
+    }
+
+    axios.get(endPoint + new URLSearchParams(parameters))
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error => {
+            console.log('ERROR!! ' + error)
+        })
+
+
+
+
     //When DOM loads, initialize Google Map
     componentDidMount() {
+        this.getVenues()
         if (!window.google) {
             const s = document.createElement('script');
             s.type = 'text/javascript';
