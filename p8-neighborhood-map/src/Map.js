@@ -5,7 +5,8 @@ import axios from 'axios'
 class Map extends Component {
 
     state = {
-        locations : [
+        venues: [],
+        /*locations : [
             {
                 name : "Pena Palace",
                 position :{ lat: 38.7875893 ,lng: -9.3927976 },
@@ -34,13 +35,12 @@ class Map extends Component {
                 position :{ lat: 38.7956757, lng: -9.3974044 },
                 address: "test"
             }
-        ],
+        ],*/
         markers: []
     }
 
     // function to create the map once Google Maps script is loaded
     onScriptLoad = () => {
-        
         // DESTRUCTURING
         let startingPoint = {
             lat: 38.7944722,
@@ -54,10 +54,10 @@ class Map extends Component {
             }
         );
 
-        for (let i = 0; i < this.state.locations.length; i++) {
+        for (let i = 0; i < this.state.venues.length; i++) {
             //DESTRUCTURING
-            let position = this.state.locations[i].position;
-            let title = this.state.locations[i].name;
+            let position = this.state.venues[i].position;
+            let title = this.state.venues[i].name;
             //Create a marker per location and place into markers array
             const marker = new window.google.maps.Marker({
                 map: map,
@@ -69,6 +69,27 @@ class Map extends Component {
             //Push the newly created marker into our array of markers
             this.state.markers.push(marker);        
         }
+
+        /*const largeInfoWindow = new window.google.maps.InfoWindow();
+
+        marker.addListener('click', function() {
+            populateInfoWindow(this, largeInfoWindow);
+        });
+
+        /*This function populates the infoWindow when the marker is clicked. We'll only allow one infoWindow which will open on the marker that is clicked
+        and populate based on that marker's position*/
+        /*populateInfoWindow = (marker, infowindow) => {
+            //Check to make sure infowindow is not already opened on the marker
+            if (infowindow.marker != marker) {
+                infowindow.marker = marker;   
+                infowindow.setContent('<div>' + marker.title + '</div>');
+                infowindow.open(map, marker);
+                //Make sur ethe property is cleared if the infowindow is closed
+                infowindow.addListener('closeclick', function() {
+                    infowindow.setMarker(null);
+                });
+            }
+        }*/
     }
 
     getVenues = () => {
@@ -83,14 +104,14 @@ class Map extends Component {
 
         axios.get(endPoint + new URLSearchParams(parameters))
         .then(response => {
-            console.log(response)
+            this.setState({
+                venues: response.data.response.groups[0].items
+            })
         })
         .catch(error => {
             console.log('ERROR!! ' + error)
         })
     }
-
-    
 
     //When DOM loads, initialize Google Map
     componentDidMount() {
