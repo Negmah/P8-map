@@ -4,13 +4,47 @@ import axios from 'axios'
 
 class Map extends Component {
 
+    state = {
+        locations : [
+            {
+                name : "Pena Palace",
+                position :{ lat: 38.7875893 ,lng: -9.3927976 },
+                address: "test"                   
+            },
+            {
+                name : "Estoril Motorsport Racing Circuit",
+                position :{ lat: 38.7505728, lng: -9.3963843 },
+                address: "test"},
+            {
+                name : "Cruz Alta Monument",
+                position :{ lat: 38.7846668, lng: -9.3967369 },
+                address: "test"},
+            {
+                name : "Countess of Edla Chalet and Garden",
+                position :{ lat: 38.7846374, lng: -9.3984987 },
+                address: "test"
+            },
+            {
+                name : "Moorish Castle",
+                position :{ lat: 38.7944802, lng: -9.3963529 },
+                address: "test"
+            },
+            {
+                name : "Quinta da Regaleira palace and gardens",
+                position :{ lat: 38.7956757, lng: -9.3974044 },
+                address: "test"
+            }
+        ],
+        markers: []
+    }
+
     // function to create the map once Google Maps script is loaded
     onScriptLoad = () => {
         
         // DESTRUCTURING
         let startingPoint = {
-            lat: 38.785496,
-            lng: -9.474103
+            lat: 38.7944722,
+            lng: -9.4411398
         };
 
         const map = new window.google.maps.Map (
@@ -19,6 +53,22 @@ class Map extends Component {
                 zoom: 11
             }
         );
+
+        for (let i = 0; i < this.state.locations.length; i++) {
+            //DESTRUCTURING
+            let position = this.state.locations[i].position;
+            let title = this.state.locations[i].name;
+            //Create a marker per location and place into markers array
+            const marker = new window.google.maps.Marker({
+                map: map,
+                position: position,
+                title: title,
+                animation: window.google.maps.Animation.DROP,
+                id: i
+            });
+            //Push the newly created marker into our array of markers
+            this.state.markers.push(marker);        
+        }
     }
 
     getVenues = () => {
@@ -41,9 +91,6 @@ class Map extends Component {
     }
 
     
-
-
-
 
     //When DOM loads, initialize Google Map
     componentDidMount() {
