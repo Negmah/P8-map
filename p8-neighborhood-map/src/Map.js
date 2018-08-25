@@ -27,9 +27,8 @@ class Map extends Component {
             client_id: 'GY21CT1VXNSUBLIHUETJXMKOZSVQOEGL3X32O5AHAZGABGV1',
             client_secret: 'LOTRCNP3MSSKHDCUCFKRNRHMFMATXUQ5BTZV2XA4TH4OKMDE',
             near: 'Sintra',
-            radius: '10000',
             section: 'topPicks',
-            v: '201802'
+            v: '20182507'
         }
 
         axios.get(endPoint + new URLSearchParams(parameters))

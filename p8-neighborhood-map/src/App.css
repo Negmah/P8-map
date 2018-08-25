@@ -54,7 +54,7 @@ body {
 
 /* Side navigation menu */
 .sidebar {
-  width: 40vw;
+  width: 0px;
   height: 100%; /* 100% Full-height */
   position: fixed; /* Stay in place */
   z-index: 1; /* Stay on top */
