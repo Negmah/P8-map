@@ -56,9 +56,25 @@ class Map extends Component {
             /*for (let i = 0, marker; marker = this.state.markers[i]; i++) {
               window.google.maps.event.addListener(marker, 'click', function(e) {
                 infowindow.setContent('Marker position: ' + marker.getPosition());
-                infowindow.open(this.map, this);
               });
             }*/
+
+            window.google.maps.event.addListener(marker, 'click', function() {
+                infowindow.setContent('Marker position: ' + marker.getPosition() + 'dsvsr');
+                if(!marker.open){
+                    infowindow.open(this.map, marker);
+                    marker.open = true;
+                }
+                else{
+                    infowindow.close();
+                    marker.open = false;
+                }
+                window.google.maps.event.addListener(this.map, 'click', function() {
+                    infowindow.close();
+                    marker.open = false;
+                });
+            });
+
         });
     }
 
