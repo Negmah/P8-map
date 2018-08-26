@@ -27,8 +27,6 @@ class App extends Component {
   }
         
   getVenues = () => {
-    const current = {}
-    this.current = current;
 
     // Foursquare API Information
     const endPoint = 'https://api.foursquare.com/v2/venues/explore?'
@@ -59,7 +57,6 @@ class App extends Component {
     this.setState({ query })
   }
 
-
   openNav()  {
     document.getElementById("navbar").style.width = "50vw";
   }
@@ -69,11 +66,11 @@ class App extends Component {
   }
   
   toggleOpen = (id) => {
-    this.setState({
-      displayedLocation: id,
-      isOpen: true
-    })
-  }
+      this.setState({
+        displayedLocation: id,
+        isOpen: true
+      })
+    }
 
   render() {
     let showingLocations

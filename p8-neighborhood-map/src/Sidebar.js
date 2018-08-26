@@ -3,15 +3,6 @@ import React, { Component } from "react"
 
 class Sidebar extends Component {
 
-
-
-  {this.props.showingLocations.map(venue =>
-    <li
-    key={venue.id}
-    tabIndex='0'><a onClick={() => this.props.onToggleOpen(venue.id)} >{venue.name}</a></li>
-  )}
-
-
   render() {
     //console.log('my props', this.props.venues)
 
@@ -35,7 +26,7 @@ class Sidebar extends Component {
           <ul>
             {this.props.showingLocations.map(e =>
               <li key={e.venue.id} tabIndex='0'>
-              <a onClick={() => this.props.toggleOpen(venue.id)} >{venue.name}</a></li>
+              <a onClick={() => this.props.toggleOpen(e.venue.id)} >{e.venue.name}</a></li>
             )}
           </ul>
         </nav>
