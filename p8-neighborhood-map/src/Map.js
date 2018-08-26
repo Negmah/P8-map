@@ -1,46 +1,17 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 
 
 class Map extends Component {
 
     state = {
+        map: {},
         venues: [],
-        /*locations : [
-            {
-                name : "Pena Palace",
-                position :{ lat: 38.7875893 ,lng: -9.3927976 },
-                address: "test"                   
-            },
-            {
-                name : "Estoril Motorsport Racing Circuit",
-                position :{ lat: 38.7505728, lng: -9.3963843 },
-                address: "test"},
-            {
-                name : "Cruz Alta Monument",
-                position :{ lat: 38.7846668, lng: -9.3967369 },
-                address: "test"},
-            {
-                name : "Countess of Edla Chalet and Garden",
-                position :{ lat: 38.7846374, lng: -9.3984987 },
-                address: "test"
-            },
-            {
-                name : "Moorish Castle",
-                position :{ lat: 38.7944802, lng: -9.3963529 },
-                address: "test"
-            },
-            {
-                name : "Quinta da Regaleira palace and gardens",
-                position :{ lat: 38.7956757, lng: -9.3974044 },
-                address: "test"
-            }
-        ],*/
-        markers: []
+        markers: [],
     }
 
     // function to create the map once Google Maps script is loaded
     onScriptLoad = () => {
+
         // DESTRUCTURING
         let startingPoint = {
             lat: 38.7944722,
@@ -54,68 +25,63 @@ class Map extends Component {
             }
         );
 
-        for (let i = 0; i < this.state.venues.length; i++) {
-            //DESTRUCTURING
-            let position = this.state.venues[i].position;
-            let title = this.state.venues[i].name;
-            //Create a marker per location and place into markers array
-            const marker = new window.google.maps.Marker({
-                map: map,
-                position: position,
-                title: title,
-                animation: window.google.maps.Animation.DROP,
-                id: i
-            });
-            //Push the newly created marker into our array of markers
-            this.state.markers.push(marker);        
-        }
-
-        /*const largeInfoWindow = new window.google.maps.InfoWindow();
-
-        marker.addListener('click', function() {
-            populateInfoWindow(this, largeInfoWindow);
-        });
-
-        /*This function populates the infoWindow when the marker is clicked. We'll only allow one infoWindow which will open on the marker that is clicked
-        and populate based on that marker's position*/
-        /*populateInfoWindow = (marker, infowindow) => {
-            //Check to make sure infowindow is not already opened on the marker
-            if (infowindow.marker != marker) {
-                infowindow.marker = marker;   
-                infowindow.setContent('<div>' + marker.title + '</div>');
-                infowindow.open(map, marker);
-                //Make sur ethe property is cleared if the infowindow is closed
-                infowindow.addListener('closeclick', function() {
-                    infowindow.setMarker(null);
-                });
-            }
-        }*/
+        this.setState({
+            map: map,
+            venues: this.props.venues
+        })
     }
 
-    getVenues = () => {
-        const endPoint = 'https://api.foursquare.com/v2/venues/explore?'
-        const parameters = {
-            client_id: 'GY21CT1VXNSUBLIHUETJXMKOZSVQOEGL3X32O5AHAZGABGV1',
-            client_secret: 'LOTRCNP3MSSKHDCUCFKRNRHMFMATXUQ5BTZV2XA4TH4OKMDE',
-            near: 'Sintra',
-            section: 'topPicks',
-            v: '20182507'
-        }
+    loadmarker = () => {
+        this.props.venues.map(configVenue => {
+            
+            const position = {
+                lat: configVenue.venue.location.lat,
+                lng: configVenue.venue.location.lng
+            }
+            
+            const marker = new window.google.maps.Marker({
+                position: position,
+                map: this.state.map,
+                animation: window.google.maps.Animation.DROP,
+                title: configVenue.venue.name,
+                id: configVenue.venue.id
+            });
+            
+            this.state.markers.push(marker);
+            
+            console.log('state markers ', this.state.markers)
+            
+            const largeInfoWindow = new window.google.maps.InfoWindow();
+            
+            marker.addListener('click', () => {
+                populateInfoWindow(this, largeInfoWindow);
+            });
+            
+            /*This function populates the infoWindow when the marker is clicked.
+            We'll only allow one infoWindow which will open on the marker that is clicked
+            and populate based on that marker's position*/
+            const populateInfoWindow = (marker, infowindow) => {
+                //Check to make sure infowindow is not already opened on the marker
+                if (infowindow.marker !== marker) {
+                    infowindow.marker = marker;   
+                    infowindow.setContent('<div>' + marker.title + '</div>');
+                    infowindow.open(this.state.map, marker);
+                    //Make sure the property is cleared if the infowindow is closed
+                    infowindow.addListener('closeclick', () => {
+                        infowindow.setMarker(null);
+                    });
+                }
+            }
+        });
+    }
 
-        axios.get(endPoint + new URLSearchParams(parameters))
-        .then(response => {
-            this.setState({
-                venues: response.data.response.groups[0].items
-            })
-        })
-        .catch(error => {
-            console.log('ERROR!! ' + error)
-        })
+
+    componentDidUpdate(){
+        this.loadmarker();
     }
 
     //When DOM loads, initialize Google Map
     componentDidMount() {
-        this.getVenues()
         if (!window.google) {
             const s = document.createElement('script');
             s.type = 'text/javascript';
@@ -125,10 +91,10 @@ class Map extends Component {
             // Below is important. 
             //We cannot access google.maps until it's finished loading
             s.addEventListener('load', e => {
-                this.onScriptLoad()
+                this.onScriptLoad();                
             })
         } else {
-            this.onScriptLoad()
+            this.onScriptLoad();
         }
     }
 

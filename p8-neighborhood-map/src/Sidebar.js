@@ -4,13 +4,13 @@ import React from "react";
 
 // Stateless functional Component
 const Sidebar = (props) => {
-
+  console.log('my props',props.venues)
   return (
     //Code partially taken from W3Schools
     <nav id="navbar" className="sidebar">
       <div id='sidebar-header'>
         <img className='sidebar-icon' src='http://res.cloudinary.com/negmah/image/upload/v1535134022/pena-palace-icon.jpg' alt='Pena Palace icon'></img>
-        <button className='close-button' onClick={props.closeNavbar} role='button'>x</button>
+        <button className='close-button' onClick={props.closeNavbar}>x</button> {/*implicit ARIA role: 'button'*/}
         {/*<a href='javascript:void(0)' className='close-button' onClick={props.closeNavbar}>&times;</a>*/}
       </div>
       <div>
@@ -18,11 +18,9 @@ const Sidebar = (props) => {
       </div>
       <div id='sidebar-list'>
         <ul>
-            <li><a href='#'>location 1</a></li>
-            <li><a href='#'>location 2</a></li>
-            <li><a href='#'>location 3</a></li>
-            <li><a href='#'>location 4</a></li>
-            <li><a href='#'>location 5</a></li>
+          {props.venues.map((venus) => 
+            <li key={venus.venue.id}><a href='#'>{venus.venue.name}</a></li>
+          )}
         </ul>
       </div>
     </nav>
