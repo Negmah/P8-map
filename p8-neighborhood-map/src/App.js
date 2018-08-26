@@ -21,10 +21,15 @@ class App extends Component {
 
   state = {
     venues: [],
-    query: ''
+    query: '',
+    displayedLocation: '',
+    isOpen: false
   }
-
+        
   getVenues = () => {
+    const current = {}
+    this.current = current;
+
     // Foursquare API Information
     const endPoint = 'https://api.foursquare.com/v2/venues/explore?'
     const parameters = {
@@ -63,10 +68,18 @@ class App extends Component {
       document.getElementById("navbar").style.width = "0";
   }
   
+  toggleOpen = (id) => {
+    this.setState({
+      displayedLocation: id,
+      isOpen: true
+    })
+  }
+
   render() {
     let showingLocations
-    if (this.state.query) {
-      const match = new RegExp(escapeRegExp(this.state.query, 'i'))
+
+    if (this.state.showingLocations) {
+      const match = new RegExp(escapeRegExp(this.state.showingLocations, 'i'))
       showingLocations = this.state.venues.filter((venue) => match.test(venue.venue.name))
     } else {
       showingLocations = this.state.venues
@@ -79,13 +92,17 @@ class App extends Component {
     return (
       <main>
         <div className="App">
-          <Header openNavbar={this.openNav} />
-          <Sidebar 
+            <Header
+            openNavbar={this.openNav}
+            />
+            <Sidebar
+            getVenues={this.getVenues}
             closeNavbar={this.closeNav}
             venues={this.state.venues}
             query={this.state.query}
             showingLocations={showingLocations}
             updateQuery={this.updateQuery}
+            toggleOpen={this.toggleOpen}
           />
           <Map
           showingLocations={showingLocations}

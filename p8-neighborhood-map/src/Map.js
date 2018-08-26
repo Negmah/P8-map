@@ -26,17 +26,17 @@ class Map extends Component {
             }
         );
 
-				const infowindow = new window.google.maps.InfoWindow();
-				this.infowindow = infowindow;
-				
-				window.google.maps.event.addListener(infowindow, 'closeclick', function() {
-					  current.marker = false;
-				});
+        const infowindow = new window.google.maps.InfoWindow();
+        this.infowindow = infowindow;
+        
+        window.google.maps.event.addListener(infowindow, 'closeclick', function() {
+                current.marker = false;
+        });
 
         window.google.maps.event.addListener(this.map, 'click', function() {
-				    current.marker = false;
+            current.marker = false;
             infowindow.close();
-				});
+		});
     }
 
     loadmarker = () => {
