@@ -3,9 +3,6 @@ import React, { Component } from "react";
 
 class Sidebar extends Component {
 
-  state = {
-    query = ''
-  }
  
   render() {
     console.log('my props', this.props.venues)
