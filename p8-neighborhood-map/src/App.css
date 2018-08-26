@@ -10,6 +10,9 @@ body {
   text-align: center;
 }
 
+body, a:hover {
+  cursor: url(http://cur.cursors-4u.net/cursors/cur-11/cur1054.cur), progress !important;
+}
 
 /* <<<<<<<<<<<<<< HEADER >>>>>>>>>>>>> */
 
@@ -149,8 +152,18 @@ body {
 
 #footer-wrapper {
   width: 100vw;
-  height: 100vw;
+  height: 100px;
   background-color: black;
-  bottom: 0;
   color: white;
+  position: relative;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  font-family: 'Questrial', sans-serif;
+  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+  font-family: 'Amatic SC', cursive;
 }

@@ -51,28 +51,14 @@ class Map extends Component {
             
             console.log('state markers ', this.state.markers)
             
-            const largeInfoWindow = new window.google.maps.InfoWindow();
-            
-            marker.addListener('click', () => {
-                populateInfoWindow(this, largeInfoWindow);
-            });
-            
-            /*This function populates the infoWindow when the marker is clicked.
-            We'll only allow one infoWindow which will open on the marker that is clicked
-            and populate based on that marker's position*/
-            const populateInfoWindow = (marker, infowindow) => {
-                
-                //Check to make sure infowindow is not already opened on the marker
-                if (infowindow.marker !== marker) {
-                    infowindow.marker = marker;   
-                    infowindow.setContent('<div>' + marker.title + '</div>');
-                    infowindow.open(this.state.map, marker);
-                    //Make sure the property is cleared if the infowindow is closed
-                    infowindow.addListener('closeclick', () => {
-                        infowindow.setMarker(null);
-                    });
-                }
-            }
+            const infowindow = new window.google.maps.InfoWindow();
+
+            /*for (let i = 0, marker; marker = this.state.markers[i]; i++) {
+              window.google.maps.event.addListener(marker, 'click', function(e) {
+                infowindow.setContent('Marker position: ' + marker.getPosition());
+                infowindow.open(this.map, this);
+              });
+            }*/
         });
     }
 
