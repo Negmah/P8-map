@@ -25,12 +25,13 @@ class App extends Component {
   }
 
   getVenues = () => {
+    // Foursquare API Information
     const endPoint = 'https://api.foursquare.com/v2/venues/explore?'
     const parameters = {
       client_id: 'GY21CT1VXNSUBLIHUETJXMKOZSVQOEGL3X32O5AHAZGABGV1',
       client_secret: 'LOTRCNP3MSSKHDCUCFKRNRHMFMATXUQ5BTZV2XA4TH4OKMDE',
       near: 'Sintra',
-      section: 'topPicks',
+      section: 'outdoors',
       v: '20182507'
     }
 
@@ -41,7 +42,7 @@ class App extends Component {
       })
     })
     .catch(error => {
-      console.log('ERROR!! ' + error)
+      console.log('Failed in retrieving Foursquare info: ' + error + ' Please try again later!')
     })
   }
 

@@ -5,7 +5,7 @@ class Map extends Component {
 
     state = {
         map: {},
-
+        markers: []
     }
 
     // function to create the map once Google Maps script is loaded
@@ -32,6 +32,10 @@ class Map extends Component {
 
     loadmarker = () => {
         let infowindow = 0;
+        const self = this;
+        while (this.state.markers.length) {
+            this.state.markers.pop().setMap(null);
+        }
         console.log(this.props.showingLocations)
         this.props.showingLocations.map(configVenue => {
 
