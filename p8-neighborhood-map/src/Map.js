@@ -33,7 +33,7 @@ class Map extends Component {
 
     loadmarker = () => {
         this.props.venues.map(configVenue => {
-            
+
             const position = {
                 lat: configVenue.venue.location.lat,
                 lng: configVenue.venue.location.lng
@@ -61,6 +61,7 @@ class Map extends Component {
             We'll only allow one infoWindow which will open on the marker that is clicked
             and populate based on that marker's position*/
             const populateInfoWindow = (marker, infowindow) => {
+                
                 //Check to make sure infowindow is not already opened on the marker
                 if (infowindow.marker !== marker) {
                     infowindow.marker = marker;   
