@@ -39,12 +39,17 @@ class Map extends Component {
                 lng: configVenue.venue.location.lng
             }
             
+            const address = {
+                placeAddress: configVenue.venue.location.address
+            }
+
             const marker = new window.google.maps.Marker({
                 position: position,
                 map: this.state.map,
                 animation: window.google.maps.Animation.DROP,
                 title: configVenue.venue.name,
-                id: configVenue.venue.id
+                address: address,
+                id: configVenue.venue.id,
             });
             
             this.state.markers.push(marker);
@@ -59,8 +64,9 @@ class Map extends Component {
               });
             }*/
 
+            //https://stackoverflow.com/questions/1875596/have-just-one-infowindow-open-in-google-maps-api-v3
             window.google.maps.event.addListener(marker, 'click', function() {
-                infowindow.setContent('Marker position: ' + marker.getPosition() + 'dsvsr');
+                infowindow.setContent(marker.title + ' ' + marker.address);
                 if(!marker.open){
                     infowindow.open(this.map, marker);
                     marker.open = true;

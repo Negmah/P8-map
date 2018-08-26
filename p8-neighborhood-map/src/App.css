@@ -108,13 +108,20 @@ body, a:hover {
   background-color: #111; /* set query's box background color */
   font-family: 'Questrial', sans-serif; /* set query's box font tamily */
   text-indent: 10px; /* indent default text in query box in 10px */
+  color: whitesmoke;
 }
 
 /* Nav menu links wrapper */
 #sidebar-list > ul {
+  height: 100vw;
   margin: 0; /*Force margin to 0*/
   padding: 0; /*Force padding to 0*/
-  margin-top: 15px; /* 15% of the viewport height */
+  margin-top: 15px;
+  line-height: 20px;
+  text-align: right;
+  padding-right: 20px;
+  overflow:hidden;
+  overflow-y:scroll;
 }
 
 /* Nav menu links */
@@ -167,3 +174,4 @@ body, a:hover {
   text-align: center;
   font-family: 'Amatic SC', cursive;
 }
+
