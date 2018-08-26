@@ -3,40 +3,50 @@ import React, { Component } from 'react'
 
 class Map extends Component {
 
-    state = {
-        map: {},
-        markers: []
-    }
+    state = {};
+		
+		markers = [];
 
     // function to create the map once Google Maps script is loaded
     onScriptLoad = () => {
-        
+
+				const current = {};
+				this.current = current;
+		
         // DESTRUCTURING
         let startingPoint = {
             lat: 38.7944722,
             lng: -9.4411398
         };
 
-        const map = new window.google.maps.Map (
+        this.map = new window.google.maps.Map (
             document.getElementById('map'), {
                 center: startingPoint,
                 zoom: 11
             }
         );
 
-        this.setState({
-            map: map,
+				const infowindow = new window.google.maps.InfoWindow();
+				this.infowindow = infowindow;
+				
+				window.google.maps.event.addListener(infowindow, 'closeclick', function() {
+					  current.marker = false;
+				});
 
-        })
+        window.google.maps.event.addListener(this.map, 'click', function() {
+				    current.marker = false;
+            infowindow.close();
+				});
     }
 
     loadmarker = () => {
-        let infowindow = 0;
-        const self = this;
-        while (this.state.markers.length) {
-            this.state.markers.pop().setMap(null);
-        }
-        console.log(this.props.showingLocations)
+				const self = this;
+				console.log('loadmarker');
+				while (this.markers.length) {
+					  this.markers.pop().setMap(null);
+				}
+        console.log(this.props.showingLocations);
+
         this.props.showingLocations.map(configVenue => {
 
             const position = {
@@ -44,40 +54,36 @@ class Map extends Component {
                 lng: configVenue.venue.location.lng
             }
             
-            const address = {
-                placeAddress: configVenue.venue.location.address
-            }
+            //const address = {
+            //    placeAddress: configVenue.venue.location.address
+            //}
 
             const marker = new window.google.maps.Marker({
                 position: position,
-                map: this.state.map,
+                map: this.map,
                 animation: window.google.maps.Animation.DROP,
                 title: configVenue.venue.name,
-                address: address,
+                address: configVenue.venue.location.address,
+                //address: address,
                 id: configVenue.venue.id,
             });
-            
-            
-            //console.log('state markers ', this.state.markers)
+						this.markers.push(marker);
+            //console.log('markers ', this.markers)
 
             window.google.maps.event.addListener(marker, 'click', function() {
-                if (infowindow) {
-                    infowindow.close();
-                }
-                infowindow = new window.google.maps.InfoWindow();
-                infowindow.setContent(marker.title + ' ' + marker.address);
-                    console.log(infowindow);
-                if(!marker.open){
-                    infowindow.close();
-                    infowindow.open(this.map, marker);
-                    marker.open = true;
-                }
+								if (self.current.marker === marker) {
+										self.current.marker = false;
+										self.infowindow.close();
+								} else {
+										self.current.marker = marker;
+										self.infowindow.setContent(marker.title + ' ' + marker.address);
+										self.infowindow.open(self.map, marker);
+								}
             });
+						
+						return true;
         });
     }
-
-    
-
 
     componentDidUpdate(){
         this.loadmarker();
