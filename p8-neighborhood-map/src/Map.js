@@ -5,13 +5,12 @@ class Map extends Component {
 
     state = {
         map: {},
-        venues: [],
-        markers: [],
+
     }
 
     // function to create the map once Google Maps script is loaded
     onScriptLoad = () => {
-
+        
         // DESTRUCTURING
         let startingPoint = {
             lat: 38.7944722,
@@ -27,12 +26,14 @@ class Map extends Component {
 
         this.setState({
             map: map,
-            venues: this.props.venues
+
         })
     }
 
     loadmarker = () => {
-        this.props.venues.map(configVenue => {
+        let infowindow = 0;
+        console.log(this.props.showingLocations)
+        this.props.showingLocations.map(configVenue => {
 
             const position = {
                 lat: configVenue.venue.location.lat,
@@ -52,42 +53,32 @@ class Map extends Component {
                 id: configVenue.venue.id,
             });
             
-            this.state.markers.push(marker);
             
-            console.log('state markers ', this.state.markers)
-            
-            const infowindow = new window.google.maps.InfoWindow();
+            //console.log('state markers ', this.state.markers)
 
-            /*for (let i = 0, marker; marker = this.state.markers[i]; i++) {
-              window.google.maps.event.addListener(marker, 'click', function(e) {
-                infowindow.setContent('Marker position: ' + marker.getPosition());
-              });
-            }*/
-
-            //https://stackoverflow.com/questions/1875596/have-just-one-infowindow-open-in-google-maps-api-v3
             window.google.maps.event.addListener(marker, 'click', function() {
+                if (infowindow) {
+                    infowindow.close();
+                }
+                infowindow = new window.google.maps.InfoWindow();
                 infowindow.setContent(marker.title + ' ' + marker.address);
+                    console.log(infowindow);
                 if(!marker.open){
+                    infowindow.close();
                     infowindow.open(this.map, marker);
                     marker.open = true;
                 }
-                else{
-                    infowindow.close();
-                    marker.open = false;
-                }
-                window.google.maps.event.addListener(this.map, 'click', function() {
-                    infowindow.close();
-                    marker.open = false;
-                });
             });
-
         });
     }
+
+    
 
 
     componentDidUpdate(){
         this.loadmarker();
     }
+    
 
     //When DOM loads, initialize Google Map
     componentDidMount() {

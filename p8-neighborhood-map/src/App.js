@@ -6,19 +6,22 @@
  */
 
 
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import './App.css';
 import Header from './Header'
 import Sidebar from './Sidebar'
 import Map from './Map'
 import Footer from './Footer'
 import axios from 'axios'
+import sortBy from 'sort-by'
+import escapeRegExp from 'escape-string-regexp'
 
 
 class App extends Component {
 
   state = {
-  venues : []
+    venues: [],
+    query: ''
   }
 
   getVenues = () => {
@@ -45,6 +48,12 @@ class App extends Component {
   componentDidMount(){
     this.getVenues()
   }
+
+  updateQuery = query => {
+    this.setState({ query })
+  }
+
+
   openNav()  {
     document.getElementById("navbar").style.width = "50vw";
   }
@@ -54,12 +63,32 @@ class App extends Component {
   }
   
   render() {
+    let showingLocations
+    if (this.state.query) {
+      const match = new RegExp(escapeRegExp(this.state.query, 'i'))
+      showingLocations = this.state.venues.filter((venue) => match.test(venue.venue.name))
+    } else {
+      showingLocations = this.state.venues
+    }
+
+    showingLocations.sort(sortBy('name'))
+
+    
+
     return (
       <main>
         <div className="App">
           <Header openNavbar={this.openNav} />
-          <Sidebar closeNavbar={this.closeNav} venues={this.state.venues} />
-          <Map venues={this.state.venues}/>
+          <Sidebar 
+            closeNavbar={this.closeNav}
+            venues={this.state.venues}
+            query={this.state.query}
+            showingLocations={showingLocations}
+            updateQuery={this.updateQuery}
+          />
+          <Map
+          showingLocations={showingLocations}
+          />
           <Footer />
         </div>
       </main>
