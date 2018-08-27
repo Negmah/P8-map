@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 
 class Map extends Component {
 
-    state = {}; //empty state to be able to pass it on to what is needed
-    markers = []; //empty array of markers to be updated
+    state = {};
+    markers = [];
 
     // function to create the map once Google Maps script is loaded
     onScriptLoad = () => {
@@ -123,7 +123,7 @@ class Map extends Component {
 
     render() {
         return (
-            <div style={{ width: '100%', height: 400 }} id='map' role='application'>
+            <div style={{ width: '100%', height: 410 }} id='map' role='application'>
             </div>
         );
     }

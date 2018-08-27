@@ -23,10 +23,9 @@ class App extends Component {
     venues: [],
     showingLocations: '',
     query: '',
-    displayedLocation: '',
-    isOpen: false
+    marker: {},
   }
-        
+
   getVenues = () => {
 
     // Foursquare API Information
@@ -67,13 +66,7 @@ class App extends Component {
       document.getElementById("navbar").style.width = "0";
       document.getElementById('map-area').focus();
   }
-  
-  toggleOpen = (id) => {
-      this.setState({
-        displayedLocation: id,
-        isOpen: true
-      })
-    }
+
 
   render() {
       let showingLocations
@@ -88,28 +81,25 @@ class App extends Component {
     
 
     return (
-      <main>
-        <div className="App">
-          <Header
-            openNavbar={this.openNav}
-          />
-          <Sidebar
-            getVenues={this.getVenues}
-            closeNavbar={this.closeNav}
-            venues={this.state.venues}
-            query={this.state.query}
-            showingLocations={showingLocations}
-            updateQuery={this.updateQuery}
-            toggleOpen={this.toggleOpen}
-          />
-          <section id='map-area' tabIndex='0'>
-          <Map
-            showingLocations={showingLocations}
-          />
-          </section>
-          <Footer />
-        </div>
-      </main>
+      <div className='App'>
+        <Header
+          openNavbar={this.openNav}
+        />
+        <Sidebar
+          getVenues={this.getVenues}
+          closeNavbar={this.closeNav}
+          venues={this.state.venues}
+          query={this.state.query}
+          showingLocations={showingLocations}
+          updateQuery={this.updateQuery}
+        />
+        <section id='map-area' tabIndex='0'>
+        <Map
+          showingLocations={showingLocations}
+        />
+        </section>
+        <Footer />
+      </div>
     );
   }
 }

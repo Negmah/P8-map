@@ -29,8 +29,6 @@ class Sidebar extends Component {
               <li key={venus.venue.id}
               tabIndex='0'>
               <a 
-                onClick={() =>
-                this.props.toggleOpen(venus.venue.id)}
                 >
                 {venus.venue.name}
               </a>
