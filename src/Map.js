@@ -123,7 +123,7 @@ class Map extends Component {
 
     render() {
         return (
-            <div style={{ width: '100%', height: 500 }} id='map' role='application'>
+            <div style={{ width: '100%', height: 400 }} id='map' role='application'>
             </div>
         );
     }

@@ -13,7 +13,7 @@ import Sidebar from './Sidebar'
 import Map from './Map'
 import Footer from './Footer'
 import axios from 'axios'
-import sortBy from 'sort-by'
+//import sortBy from 'sort-by'
 import escapeRegExp from 'escape-string-regexp'
 
 
@@ -59,7 +59,7 @@ class App extends Component {
   }
 
   openNav()  {
-    document.getElementById("navbar").style.width = "50vw";
+    document.getElementById("navbar").style.width = "250px";
     document.getElementById("navbar").focus();
   }
 
