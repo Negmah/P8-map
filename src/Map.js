@@ -3,13 +3,13 @@ import React, { Component } from 'react'
 
 class Map extends Component {
 
-    state = {};
-
-    markers = [];
+    state = {}; //empty state to be able to pass it on to what is needed
+    markers = []; //empty array of markers to be updated
 
     // function to create the map once Google Maps script is loaded
     onScriptLoad = () => {
 
+        //empty object to use on demand
         const current = {};
         this.current = current;
 		
@@ -19,19 +19,22 @@ class Map extends Component {
             lng: -9.4411398
         };
 
+        //define default attributes and starting point for map
         this.map = new window.google.maps.Map (
             document.getElementById('map'), {
                 center: startingPoint,
                 zoom: 11
             }
         );
-
+        
         const infowindow = new window.google.maps.InfoWindow({
-            maxWidth: 300
+            maxWidth: 300   //establish max-wdith for infowindows, to enhance UX
         });
+
 
         this.infowindow = infowindow;
         
+        // close one infowindow when another one opens
         window.google.maps.event.addListener(infowindow, 'closeclick', function() {
                 current.marker = false;
         });
@@ -42,22 +45,29 @@ class Map extends Component {
 		});
     }
 
+    // markers method
     loadmarker = () => {
 				const self = this;
-				console.log('loadmarker');
+                console.log('loadmarker');  //DEBUG
+                
 				while (this.markers.length) {
 					  this.markers.pop().setMap(null);
 				}
-        console.log(this.props.showingLocations);
+        console.log(this.props.showingLocations); //DEBUG
 
+        //map over the showingLocations array
+        //build a marker and push it into the markers array
+        //when clicking said venue, open infowindow with setup information
+        //else, close the infowindow
         this.props.showingLocations.map(configVenue => {
 
+            //DESTRUCTURING
             const position = {
                 lat: configVenue.venue.location.lat,
                 lng: configVenue.venue.location.lng
             }
             
-
+            //define marker
             const marker = new window.google.maps.Marker({
                 position: position,
                 map: this.map,
@@ -66,23 +76,28 @@ class Map extends Component {
                 address: configVenue.venue.location.address,
                 id: configVenue.venue.id,
             });
-						this.markers.push(marker);
+            
+            // push each new marker into the empty array of markers
+            this.markers.push(marker);
+
 
             window.google.maps.event.addListener(marker, 'click', function() {
-								if (self.current.marker === marker) {
-										self.current.marker = false;
-										self.infowindow.close();
-								} else {
-										self.current.marker = marker;
-										self.infowindow.setContent(marker.title + ' ' + marker.address);
-										self.infowindow.open(self.map, marker);
-								}
+                if (self.current.marker === marker) {
+                        self.current.marker = false;
+                        self.infowindow.close();
+                } else {
+                        self.current.marker = marker;
+                        self.infowindow.setContent(marker.title + ' ' + marker.address);
+                        self.infowindow.open(self.map, marker);
+                }
             });
 						
-						return true;
+			return true;
+        
         });
     }
 
+    //invoke markers method immediately after update occurs, to be able to display them
     componentDidUpdate(){
         this.loadmarker();
     }
@@ -108,7 +123,7 @@ class Map extends Component {
 
     render() {
         return (
-            <div style={{ width: '100%', height: 500 }} id='map'>
+            <div style={{ width: '100%', height: 500 }} id='map' role='application'>
             </div>
         );
     }
