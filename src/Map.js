@@ -26,7 +26,10 @@ class Map extends Component {
             }
         );
 
-        const infowindow = new window.google.maps.InfoWindow();
+        const infowindow = new window.google.maps.InfoWindow({
+            maxWidth: 300
+        });
+
         this.infowindow = infowindow;
         
         window.google.maps.event.addListener(infowindow, 'closeclick', function() {
@@ -105,7 +108,7 @@ class Map extends Component {
 
     render() {
         return (
-            <div style={{ width: '100%', height: 415 }} id='map'>
+            <div style={{ width: '100%', height: 500 }} id='map'>
             </div>
         );
     }

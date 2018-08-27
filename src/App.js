@@ -88,10 +88,10 @@ class App extends Component {
     return (
       <main>
         <div className="App">
-            <Header
+          <Header
             openNavbar={this.openNav}
-            />
-            <Sidebar
+          />
+          <Sidebar
             getVenues={this.getVenues}
             closeNavbar={this.closeNav}
             venues={this.state.venues}
@@ -101,7 +101,7 @@ class App extends Component {
             toggleOpen={this.toggleOpen}
           />
           <Map
-          showingLocations={showingLocations}
+            showingLocations={showingLocations}
           />
           <Footer />
         </div>
