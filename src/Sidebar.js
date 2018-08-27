@@ -27,9 +27,10 @@ class Sidebar extends Component {
             {this.props.showingLocations.map((venus) =>
               <li key={venus.venue.id}
               tabIndex='0'>
-              <a href='#'
+              <a 
                 onClick={() =>
-                this.props.toggleOpen(venus.venue.id)} >
+                this.props.toggleOpen(venus.venue.id)}
+                >
                 {venus.venue.name}
               </a>
               </li>
