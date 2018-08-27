@@ -4,14 +4,14 @@ import React, { Component } from 'react'
 class Map extends Component {
 
     state = {};
-		
-		markers = [];
+
+    markers = [];
 
     // function to create the map once Google Maps script is loaded
     onScriptLoad = () => {
 
-				const current = {};
-				this.current = current;
+        const current = {};
+        this.current = current;
 		
         // DESTRUCTURING
         let startingPoint = {
