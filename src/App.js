@@ -60,10 +60,12 @@ class App extends Component {
 
   openNav()  {
     document.getElementById("navbar").style.width = "50vw";
+    document.getElementById("navbar").focus();
   }
 
   closeNav() {
       document.getElementById("navbar").style.width = "0";
+      document.getElementById('map-area').focus();
   }
   
   toggleOpen = (id) => {
@@ -100,9 +102,11 @@ class App extends Component {
             updateQuery={this.updateQuery}
             toggleOpen={this.toggleOpen}
           />
+          <section id='map-area' tabIndex='0'>
           <Map
             showingLocations={showingLocations}
           />
+          </section>
           <Footer />
         </div>
       </main>
