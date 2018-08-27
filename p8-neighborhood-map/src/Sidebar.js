@@ -24,9 +24,15 @@ class Sidebar extends Component {
         </div>
         <nav id='sidebar-list'>
           <ul>
-            {this.props.showingLocations.map(e =>
-              <li key={e.venue.id} tabIndex='0'>
-              <a onClick={() => this.props.toggleOpen(e.venue.id)} >{e.venue.name}</a></li>
+            {this.props.showingLocations.map((venus) =>
+              <li key={venus.venue.id}
+              tabIndex='0'>
+              <a href='#'
+                onClick={() =>
+                this.props.toggleOpen(venus.venue.id)} >
+                {venus.venue.name}
+              </a>
+              </li>
             )}
           </ul>
         </nav>

@@ -54,9 +54,6 @@ class Map extends Component {
                 lng: configVenue.venue.location.lng
             }
             
-            //const address = {
-            //    placeAddress: configVenue.venue.location.address
-            //}
 
             const marker = new window.google.maps.Marker({
                 position: position,
@@ -64,11 +61,9 @@ class Map extends Component {
                 animation: window.google.maps.Animation.DROP,
                 title: configVenue.venue.name,
                 address: configVenue.venue.location.address,
-                //address: address,
                 id: configVenue.venue.id,
             });
 						this.markers.push(marker);
-            //console.log('markers ', this.markers)
 
             window.google.maps.event.addListener(marker, 'click', function() {
 								if (self.current.marker === marker) {

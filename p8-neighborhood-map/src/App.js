@@ -21,6 +21,7 @@ class App extends Component {
 
   state = {
     venues: [],
+    showingLocations: '',
     query: '',
     displayedLocation: '',
     isOpen: false
@@ -73,16 +74,14 @@ class App extends Component {
     }
 
   render() {
-    let showingLocations
+      let showingLocations
 
-    if (this.state.showingLocations) {
-      const match = new RegExp(escapeRegExp(this.state.showingLocations, 'i'))
+    if (this.state.query) {
+      const match = new RegExp(escapeRegExp(this.state.query, 'i'))
       showingLocations = this.state.venues.filter((venue) => match.test(venue.venue.name))
     } else {
       showingLocations = this.state.venues
     }
-
-    showingLocations.sort(sortBy('name'))
 
     
 
