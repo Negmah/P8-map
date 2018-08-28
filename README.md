@@ -1,9 +1,6 @@
 ﻿# Capstone/Final Project - Project #8 | Neighborhood Map (React)
 #### Udacity's Google Developer Challenger Scholarship - Front End Web Development
 
-[![N|Solid](https://www.stoddard.consulting/images/logos/Udacity_logo_small.p# Capstone/Final Project - Project #8 | Neighborhood Map (React)
-#### Udacity's Google Developer Challenger Scholarship - Front End Web Development
-
 [![N|Solid](https://www.stoddard.consulting/images/logos/Udacity_logo_small.png)
 
 ### Summary
