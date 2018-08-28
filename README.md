@@ -57,7 +57,7 @@ The goal is to develop a single-page application using React featuring a map of 
 * [Google Fonts](https://fonts.google.com/)
 * [Cloudinary](https://cloudinary.com/)
 
-#### Run the Niegborhood Map App
+#### Run the Neigborhood Map App
 ***
 
 To start using this project follow these steps:
