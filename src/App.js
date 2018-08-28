@@ -24,6 +24,7 @@ class App extends Component {
     showingLocations: '',
     query: '',
     marker: {},
+    currentMarker: undefined
   }
 
   getVenues = () => {
@@ -39,14 +40,14 @@ class App extends Component {
     }
 
     axios.get(endPoint + new URLSearchParams(parameters))
-    .then(response => {
-      this.setState({
+      .then(response => {
+        this.setState({
           venues: response.data.response.groups[0].items
+        })
       })
-    })
-    .catch(error => {
-      console.log('Failed in retrieving Foursquare info: ' + error + ' Please try again later!')
-    })
+      .catch(error => {
+        console.log('Failed in retrieving Foursquare info: ' + error + ' Please try again later!')
+      })
   }
 
   componentDidMount(){
@@ -55,6 +56,10 @@ class App extends Component {
 
   updateQuery = query => {
     this.setState({ query })
+  }
+
+  onMarkerClick = marker => {
+    this.setState({ currentMarker: marker })
   }
 
   openNav()  {
@@ -81,25 +86,30 @@ class App extends Component {
     
 
     return (
-      <div className='App'>
-        <Header
-          openNavbar={this.openNav}
+      <main>
+        <div className='App'>
+          <Header
+            openNavbar={this.openNav}
+          />
+        <Sidebar
+            getVenues={this.getVenues}
+            closeNavbar={this.closeNav}
+            venues={this.state.venues}
+            query={this.state.query}
+            showingLocations={showingLocations}
+            updateQuery={this.updateQuery}
+            markerClicked={this.onMarkerClick}
         />
-       <Sidebar
-          getVenues={this.getVenues}
-          closeNavbar={this.closeNav}
-          venues={this.state.venues}
-          query={this.state.query}
-          showingLocations={showingLocations}
-          updateQuery={this.updateQuery}
-      />
-        <section id='map-area' tabIndex='0'>
-        <Map
-          showingLocations={showingLocations}
-        />
-        </section>
-        <Footer />
-      </div>
+          <section id='map-area' tabIndex='0'>
+          <Map
+            showingLocations={showingLocations}
+            markerClicked={this.onMarkerClick}
+            currentMarker={this.state.currentMarker}
+          />
+          </section>
+          <Footer />
+        </div>
+      </main>
     );
   }
 }

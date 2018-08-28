@@ -6,7 +6,7 @@ import './App.css';
 const Footer = (props) => {
     return (
         <div>
-            <footer id='footer-wrapper'>
+            <footer id='footer-wrapper' role='contentinfo'>
                 <p id='quote'><i>- It does not matter how slowly you go as long as you do not stop.<br />Confucius</i></p>
                 <p className='copyright'>Coded with love, sweat, tears and <strong>friends</strong> for Udacity<br />by &copy;
                     <a id='footer-link' target='_blank' rel="noopener noreferrer" href='https://www.linkedin.com/in/monica-moura-39024046/'>Monica Moura</a> {/*implicit ARIA role: 'link'*/}
