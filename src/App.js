@@ -85,14 +85,14 @@ class App extends Component {
         <Header
           openNavbar={this.openNav}
         />
-        <Sidebar
+       <Sidebar
           getVenues={this.getVenues}
           closeNavbar={this.closeNav}
           venues={this.state.venues}
           query={this.state.query}
           showingLocations={showingLocations}
           updateQuery={this.updateQuery}
-        />
+      />
         <section id='map-area' tabIndex='0'>
         <Map
           showingLocations={showingLocations}

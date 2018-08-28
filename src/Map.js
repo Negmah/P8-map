@@ -114,7 +114,7 @@ class Map extends Component {
             // Below is important. 
             //We cannot access google.maps until it's finished loading
             s.addEventListener('load', e => {
-                this.onScriptLoad();                
+                this.onScriptLoad();
             })
         } else {
             this.onScriptLoad();
