@@ -1,7 +1,7 @@
 ﻿# Capstone/Final Project - Project #8 | Neighborhood Map (React)
 #### Udacity's Google Developer Challenger Scholarship - Front End Web Development
 
-[![N|Solid](https://www.stoddard.consulting/images/logos/Udacity_logo_small.png)
+[![N|Solid](https://www.stoddard.consulting/images/logos/Udacity_logo_small.png)](https://www.stoddard.consulting/images/logos/Udacity_logo_small.png)
 
 ### Summary
 ***
@@ -62,7 +62,6 @@ The goal is to develop a single-page application using React featuring a map of 
 
 To start using this project follow these steps:
 * Git clone this [repository](https://github.com/Negmah/P8-map.git) or download as .zip file
-* install all dependencies with npm install
 * Run a terminal window in the root folder
 * Install project dependencies with:
 ```
