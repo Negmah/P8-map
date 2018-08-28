@@ -31,7 +31,6 @@ body, a:hover {
   border-bottom: 19px rgb(0, 0, 0) solid;
 }
 
-
 .header-footer, .nav-menu {
   position: absolute;
   font-family: 'Questrial', sans-serif;
@@ -39,7 +38,6 @@ body, a:hover {
   bottom: 0;
   color: #ffc107;
 }
-
 
 .nav-menu {
   font-size: 22px;
@@ -55,7 +53,6 @@ body, a:hover {
   opacity: 0.7;
   text-shadow: -4px 5px 3px #f44336;
 }
-
 
 .header-footer {
   font-size: 14px;
@@ -131,7 +128,7 @@ body, a:hover {
 }
 
 #sidebar-list {
-  height: 300px;    /* Set height */
+  height: 358px;    /* Set height */
   overflow-y: auto; /* Display scroll on y-axis whenever content occupies more than available space */
   flex: 0 0 200px; /* don't grow, don't shrink, retain width */
   list-style: none; /* Remove underline from links */
@@ -187,7 +184,6 @@ body, a:hover {
   text-align: center;
 }
 
-
 #quote {
   padding-left: 10px;
   padding-right: 20px;
@@ -195,12 +191,10 @@ body, a:hover {
   margin-bottom: 10px;
 }
 
-
 /* unvisited link */
 #footer-link, a:link {
   color: #ffc107;
 }
-
 
 /* visited link */
 a:visited {
